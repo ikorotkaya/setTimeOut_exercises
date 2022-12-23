@@ -28,7 +28,7 @@ $reset.addEventListener('click', () => {
 })
 
 
-//Exercise  2
+//Exercise  2 (Promise + then)
 
 const $submit = document.querySelector(".submit");
 const $reset = document.querySelector(".reset");
@@ -75,7 +75,7 @@ $reset.addEventListener('click', () => {
 })
 
 
-// Exercise 3
+// Exercise 3 (Promise + then)
 
 const $submit = document.querySelector(".submit");
 const $reset = document.querySelector(".reset");
@@ -101,6 +101,40 @@ $submit.addEventListener("click", () => {
     .then(() => $output.innerHTML += "PROFIT")
 })
 
+
+$reset.addEventListener('click', () => {
+  $output.innerHTML = "";
+  $time.innerHTML = "";
+})
+
+// Exercise 4 (async/await)
+
+const $submit = document.querySelector(".submit");
+const $reset = document.querySelector(".reset");
+const $output = document.querySelector(".output");
+const $time = document.querySelector(".time");
+
+$submit.addEventListener("click", () => {
+  let timeStamp = new Date();
+
+  const wait = (num) => {
+    return new Promise(function(resolve) {
+      setTimeout(() => {
+        resolve($output.innerHTML += num);
+        $time.innerHTML += Math.round((new Date() - timeStamp) / 1000);
+      }, num * 1000);
+    });
+  }
+
+  (async () => {
+    await wait(1);
+    await wait(2);
+    await wait(3);
+    await wait(4);
+    $output.innerHTML += "PROFIT";
+  })()
+
+})
 
 $reset.addEventListener('click', () => {
   $output.innerHTML = "";
